@@ -2,21 +2,21 @@ import classes from '/src/styles/SignInContent.module.css';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import postSignIn from '../utils/postSignIn';
+import { Navigate } from "react-router-dom";
 
 function SignInContent() {
 
-    async function handleSubmit(event){
+    const handleSubmit = async event => {
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
         const formJson = Object.fromEntries(formData.entries());
         try {
-            const response = await postSignIn(formJson.email, formJson.password);
-            console.log(response.data.token);
-            // Handle the token or any other data from the response
+            const userDatas = await postSignIn(formJson.email, formJson.password);
+            console.log(userDatas);
+            return <Navigate to={'/userpage'}/>;
           } catch (error) {
             console.log(error);
-            // Handle errors
           }
     }
 
