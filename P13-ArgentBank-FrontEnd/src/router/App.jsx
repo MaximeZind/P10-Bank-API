@@ -6,17 +6,17 @@ import SignIn from '../pages/SignIn';
 
 function App() {
 
-  return (
-    <BrowserRouter>
-        <Routes>
-            <Route path='/' element={<BaseLayout />} >
-                <Route index element={<Home />} />
-                <Route path='/signin' element={<SignIn />} />
-                {/* <Route path="*" element={<Error />} /> */}
-            </ Route>
-        </Routes>
-    </BrowserRouter>
-);
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path='/' element={<BaseLayout />} >
+                    <Route index element={<Home />} />
+                    <Route path='/signin' element={<SignIn />} />
+                    {/* <Route path="*" element={<Error />} /> */}
+                </ Route>
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App
