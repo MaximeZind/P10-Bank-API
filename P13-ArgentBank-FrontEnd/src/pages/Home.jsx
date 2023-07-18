@@ -1,11 +1,13 @@
+import Features from '../components/Features';
 import HeroBanner from '../components/HeroBanner';
-import classes from '../styles/Home.module.css';
+import features from '/src/data/features.json'
 
 function Home() {
 
     return (
         <main>
             < HeroBanner />
+            < Features features={features} />
         </main>
     );
 }
