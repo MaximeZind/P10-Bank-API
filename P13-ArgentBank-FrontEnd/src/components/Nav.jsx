@@ -1,11 +1,8 @@
-import classes from '../styles/nav.module.css';
+import classes from '../styles/Nav.module.css';
 import logo from '/src/assets/argentBankLogo.png';
-import { library } from '@fortawesome/fontawesome-svg-core';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-library.add(faUserCircle);
 function Nav() {
 
     return (
@@ -20,7 +17,7 @@ function Nav() {
             <div>
                 <a className={classes.main_nav_item} href="./sign-in.html">
                 <FontAwesomeIcon icon={faUserCircle} />
-                    Sign In
+                <p>Sign In</p>
                 </a>
             </div>
         </nav>
