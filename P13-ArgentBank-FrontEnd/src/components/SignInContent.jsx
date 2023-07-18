@@ -1,15 +1,23 @@
 import classes from '/src/styles/SignInContent.module.css';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import postSignIn from '../utils/postSignIn';
 
 function SignInContent() {
 
-    function handleSubmit(event){
+    async function handleSubmit(event){
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
         const formJson = Object.fromEntries(formData.entries());
-        console.log(formJson);
+        try {
+            const response = await postSignIn(formJson.email, formJson.password);
+            console.log(response.data.token);
+            // Handle the token or any other data from the response
+          } catch (error) {
+            console.log(error);
+            // Handle errors
+          }
     }
 
     return (
@@ -18,7 +26,7 @@ function SignInContent() {
             <h1>Sign In</h1>
             <form onSubmit={handleSubmit}>
                 <div className={classes.input_wrapper}>
-                    <label htmlFor="username">Username</label><input type="text" id="username" name="username" />
+                    <label htmlFor="email">Email</label><input type="text" id="email" name="email" />
                 </div>
                 <div className={classes.input_wrapper}>
                     <label htmlFor="password">Password</label><input type="password" id="password" name="password"/>
