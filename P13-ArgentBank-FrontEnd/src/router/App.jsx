@@ -8,16 +8,16 @@ import UserPage from '../pages/UserPage';
 function App() {
 
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path='/' element={<BaseLayout />} >
-                    <Route index element={<Home />} />
-                    <Route path='/signin' element={<SignIn />} />
-                    <Route path='/userpage' element={<UserPage />} />
-                    {/* <Route path="*" element={<Error />} /> */}
-                </ Route>
-            </Routes>
-        </BrowserRouter>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<BaseLayout />} >
+                        <Route index element={<Home />} />
+                        <Route path='/signin' element={<SignIn />} />
+                        <Route path='/userpage' element={<UserPage />} />
+                        {/* <Route path="*" element={<Error />} /> */}
+                    </ Route>
+                </Routes>
+            </BrowserRouter>
     );
 }
 

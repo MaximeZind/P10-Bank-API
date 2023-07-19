@@ -2,7 +2,6 @@ import classes from '/src/styles/SignInContent.module.css';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import postSignIn from '../utils/postSignIn';
-import { Navigate } from "react-router-dom";
 
 function SignInContent() {
 
@@ -14,7 +13,6 @@ function SignInContent() {
         try {
             const userDatas = await postSignIn(formJson.email, formJson.password);
             console.log(userDatas);
-            return <Navigate to={'/userpage'}/>;
           } catch (error) {
             console.log(error);
           }
