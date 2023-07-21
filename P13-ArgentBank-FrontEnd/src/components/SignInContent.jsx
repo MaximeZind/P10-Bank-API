@@ -1,9 +1,12 @@
 import classes from '/src/styles/SignInContent.module.css';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import postSignIn from '../utils/postSignIn';
+import { useDispatch } from 'react-redux';
+import { getUserProfile } from '../actions/user.action';
 
 function SignInContent() {
+
+    const dispatch = useDispatch();
 
     const handleSubmit = async event => {
         event.preventDefault();
@@ -11,8 +14,7 @@ function SignInContent() {
         const formData = new FormData(form);
         const formJson = Object.fromEntries(formData.entries());
         try {
-            const userDatas = await postSignIn(formJson.email, formJson.password);
-            console.log(userDatas);
+            dispatch(getUserProfile(formJson));
           } catch (error) {
             console.log(error);
           }
