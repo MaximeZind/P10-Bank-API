@@ -50,3 +50,8 @@
     max-width: 100%;
     width: 200px;
   }
+
+  .main_nav_right {
+    display: flex;
+    flex-direction: row;
+  }
