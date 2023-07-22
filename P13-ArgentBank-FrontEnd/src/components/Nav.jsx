@@ -1,5 +1,5 @@
 import classes from '../styles/Nav.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '/src/assets/argentBankLogo.png';
 import { faUserCircle, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,11 +8,13 @@ import { signOut } from '../actions/user.action';
 
 function Nav() {
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const userProfile = useSelector((state) => state.userReducer);
-    console.log(userProfile);
 
-    const handleSignOut = () => {
+    const handleSignOut = (event) => {
+        event.preventDefault();
+        navigate('/');
         dispatch(signOut());
     }
 
@@ -35,10 +37,10 @@ function Nav() {
                     <FontAwesomeIcon icon={faUserCircle} />
                         <p>{`${userProfile.firstName}`}</p>
                     </NavLink>
-                    <NavLink className={classes.main_nav_item} to="/" onClick={handleSignOut}>
+                    <div className={classes.main_nav_item} onClick={handleSignOut}>
                         <FontAwesomeIcon icon={faArrowRightFromBracket} />
                         <p>Sign Out</p>
-                    </NavLink>
+                    </div>
                 </div>
             }
         </nav>

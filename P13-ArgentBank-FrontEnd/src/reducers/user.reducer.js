@@ -1,9 +1,10 @@
-import { GET_USER_PROFILE, SIGN_OUT } from "../actions/user.action";
+import { GET_USER_PROFILE, SIGN_OUT, UPDATE_USER } from "../actions/user.action";
 
 const initialState = {
     lastName: null,
     firstName: null,
     id: null,
+    token: null,
 };
 
 export default function userReducer(state = initialState, action) {
@@ -11,7 +12,8 @@ export default function userReducer(state = initialState, action) {
         case GET_USER_PROFILE:
             return action.payload;
         case SIGN_OUT:
-            console.log(action.payload)
+            return initialState;
+        case UPDATE_USER:
             return action.payload;
         default:
             return state;
