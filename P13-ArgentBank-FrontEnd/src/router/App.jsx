@@ -1,9 +1,10 @@
 import '../styles/App.css';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, BrowserRouter, Navigate } from 'react-router-dom';
 import BaseLayout from './BaseLayout';
 import Home from '../pages/Home';
 import SignIn from '../pages/SignIn';
 import UserPage from '../pages/UserPage';
+import Error from '../pages/Error';
 
 function App() {
 
@@ -14,7 +15,8 @@ function App() {
                         <Route index element={<Home />} />
                         <Route path='/signin' element={<SignIn />} />
                         <Route path='/userpage' element={<UserPage />} />
-                        {/* <Route path="*" element={<Error />} /> */}
+                        <Route path="/404" element={<Error />} />
+                        <Route path="*" element={<Navigate to={'/404'}/>} /> 
                     </ Route>
                 </Routes>
             </BrowserRouter>
