@@ -30,8 +30,8 @@ function Greetings({ firstName, lastName }) {
                             <input className={classes.name_change_input} type="text" id="lastName" name="lastName" placeholder={userProfile.lastName} />
                         </div>
                         <div className={classes.buttons_wrapper}>
-                            <button className={classes.sign_in_button} type='submit'>Save</button>
-                            <button className={classes.sign_in_button} onClick={() => setOpenClose(!isOpen)} >Cancel</button>
+                            <button className={classes.edit_button} type='submit'>Save</button>
+                            <button className={classes.edit_button} onClick={() => setOpenClose(!isOpen)} >Cancel</button>
                         </div>
                     </form>
             }
