@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { SET_ERROR_MSG } from './errorMsg.action';
 
 export const GET_USER_PROFILE = "GET_USER_PROFILE";
 export const SIGN_OUT = "SIGN_OUT";
@@ -25,13 +26,16 @@ export const getUserProfile = (data) => {
                     dispatch({ type: GET_USER_PROFILE, payload: userProfile });
                 })
             }
+        }).catch((error) => {
+            dispatch({type: SET_ERROR_MSG, payload: error.response.data.message});
+            return error;
         });
     };
 };
 
 export const signOut = () => {
     return (dispatch) => {
-        dispatch({ type: SIGN_OUT});
+        dispatch({ type: SIGN_OUT });
     }
 }
 

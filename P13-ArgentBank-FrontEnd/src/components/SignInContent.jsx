@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 function SignInContent() {
 
     const userProfile = useSelector((state) => state.userReducer);
+    const errorMsg = useSelector((state) => state.errorMsgReducer);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -17,18 +18,14 @@ function SignInContent() {
         const form = event.target;
         const formData = new FormData(form);
         const formJson = Object.fromEntries(formData.entries());
-        try {
-            dispatch(getUserProfile(formJson))
-        } catch (error) {
-            console.log(error);
-        }
-    };
+        dispatch(getUserProfile(formJson));
+    }
 
     useEffect(() => {
         if (userProfile.id !== null) {
-          navigate('/userpage');
+            navigate('/userpage');
         }
-      }, [userProfile, navigate]);
+    }, [userProfile, navigate]);
 
     return (
         <section className={classes.sign_in_content}>
@@ -41,6 +38,7 @@ function SignInContent() {
                 <div className={classes.input_wrapper}>
                     <label htmlFor="password">Password</label><input type="password" id="password" name="password" />
                 </div>
+                {errorMsg ? <p className={classes.error_msg}>{errorMsg}</p> : null}
                 <div className={classes.input_remember}>
                     <input type="checkbox" id="remember-me" /><label htmlFor="remember-me">Remember me</label>
                 </div>

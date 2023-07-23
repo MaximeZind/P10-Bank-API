@@ -12,6 +12,12 @@
     font-weight: bold;
 }
 
+.name_change_form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 .edit_button {
     border-color: #00bc77;
     background-color: #00bc77;
@@ -19,4 +25,20 @@
     font-weight: bold;
     padding: 10px;
     border-radius: 0;
+}
+
+.inputs_wrapper, .buttons_wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+}
+
+.name_change_input{
+    width: 165px;
+    height: 35px;
+    font-size: 15px;
+    padding-left: 10px;
+    border-color: #b2b2b2;
+    border-radius: 5px;
 }
