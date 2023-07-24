@@ -3,6 +3,7 @@ import { SET_ERROR_MSG } from './errorMsg.action';
 
 export const GET_USER_PROFILE = "GET_USER_PROFILE";
 export const SIGN_OUT = "SIGN_OUT";
+export const SIGN_UP = "SIGN_UP";
 export const UPDATE_USER = "UPDATE_USER";
 
 export const getUserProfile = (data) => {
@@ -27,7 +28,7 @@ export const getUserProfile = (data) => {
                 })
             }
         }).catch((error) => {
-            dispatch({type: SET_ERROR_MSG, payload: error.response.data.message});
+            dispatch({ type: SET_ERROR_MSG, payload: error.response.data.message });
             return error;
         });
     };
@@ -36,6 +37,19 @@ export const getUserProfile = (data) => {
 export const signOut = () => {
     return (dispatch) => {
         dispatch({ type: SIGN_OUT });
+    }
+}
+
+export const signUp = (data) => {
+    return (dispatch) => {
+        return axios.post('http://localhost:3001/api/v1/user/signup', data).then(response => {
+            console.log(response);
+            dispatch({ type: SIGN_UP });
+        }).catch((error) => {
+            console.log(error);
+            dispatch({ type: SET_ERROR_MSG, payload: error.response.data.message });
+            return error;
+        })
     }
 }
 

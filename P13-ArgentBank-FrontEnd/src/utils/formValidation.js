@@ -4,10 +4,6 @@ export function validateName(string) {
   const regex = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/; //pattern
   let response = false;
   let errorMsg = null;
-  let validation = {
-    response: response,
-    errorMsg: errorMsg
-  }
   
   if (nameValue.length >= 2) { // plus de 2 caractères
     if ((regex.test(nameValue)) && (!nameValue.includes(",,")) && (!nameValue.includes("..")) && (!nameValue.includes("''")) && (!nameValue.includes("--")) && (!nameValue.trim().includes("  "))) {
@@ -17,6 +13,11 @@ export function validateName(string) {
     }
   } else if (nameValue.length < 2) {
     errorMsg = "Le nom doit faire au moins 2 charactères."
+  }
+
+  let validation = {
+    response: response,
+    errorMsg: errorMsg
   }
   return validation;
 }
@@ -33,6 +34,23 @@ export function validateEmail(string) {
     response = true;
   } else if (!emailValue.match(regex) || emailValue.includes(" ")) {
     errorMsg = "L'adresse email est invalide.";
+  }
+  let validation = {
+    response: response,
+    errorMsg: errorMsg
+  }
+  return validation;
+}
+
+export function validatePassword(string) {
+  const password = string.trim();
+  let response = false;
+  let errorMsg = null;
+  
+  if (password.length >= 8) {
+    response = true;
+  } else if (password.length < 8) {
+    errorMsg = "Le mot de passe doit être composé d'au moins 8 charactères";
   }
   let validation = {
     response: response,

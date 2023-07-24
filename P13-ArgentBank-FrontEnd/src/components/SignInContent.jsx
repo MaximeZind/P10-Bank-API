@@ -3,10 +3,9 @@ import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserProfile } from '../actions/user.action';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { validateEmail } from '../utils/formValidation';
-
 
 function SignInContent() {
 
@@ -54,6 +53,10 @@ function SignInContent() {
                 </div>
                 <button className={classes.sign_in_button} type='submit'>Sign In</button>
             </form>
+                <div className={classes.signup}>
+                <p>Don’t have an account? </p>
+                <Link to={"/signup"}>Sign up</Link>
+                </div>
         </section>
     );
 }
