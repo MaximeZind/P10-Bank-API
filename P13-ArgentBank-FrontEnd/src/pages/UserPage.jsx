@@ -2,14 +2,10 @@ import classes from '/src/styles/UserPage.module.css';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { Navigate } from 'react-router-dom';
 import Greetings from '../components/Greetings';
-import { useDispatch } from 'react-redux';
-import { deleteErrorMsg } from '../actions/errorMsg.action';
 
 function UserPage() {
 
     const userProfile = useSelector((state) => state.userReducer);
-    const dispatch = useDispatch();
-    dispatch(deleteErrorMsg());
 
     if (userProfile.id === null) {
         return <Navigate to={'/'} />;

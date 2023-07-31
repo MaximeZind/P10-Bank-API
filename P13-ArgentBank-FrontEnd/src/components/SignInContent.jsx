@@ -10,19 +10,21 @@ import { validateEmail } from '../utils/formValidation';
 function SignInContent() {
 
     const userProfile = useSelector((state) => state.userReducer);
-    const errorMsg = useSelector((state) => state.errorMsgReducer);
+    // const errorMsg = useSelector((state) => state.errorMsgReducer);
+    const [errorMsg, setErrorMsg] = useState(null);
     const [wrongEmailMsg, setWrongEmailMsg] = useState(null);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setErrorMsg(null);
         const form = event.target;
         const formData = new FormData(form);
         const formJson = Object.fromEntries(formData.entries());
         const isEmailCorrect = validateEmail(formJson.email);
         if (isEmailCorrect.response) {
-            dispatch(getUserProfile(formJson));
+            await dispatch(getUserProfile(formJson)).catch((error) => setErrorMsg(error.response.data.message));
             setWrongEmailMsg(null);
         } else if (!isEmailCorrect.response){
             setWrongEmailMsg(isEmailCorrect.errorMsg);

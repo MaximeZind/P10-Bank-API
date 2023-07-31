@@ -10,12 +10,12 @@ import { validateEmail, validateName, validatePassword } from '../utils/formVali
 function SignInContent() {
 
     const userProfile = useSelector((state) => state.userReducer);
-    const errorMsg = useSelector((state) => state.errorMsgReducer);
 
     const [wrongEmailMsg, setWrongEmailMsg] = useState(null);
     const [wrongPasswordMsg, setWrongPasswordMsg] = useState(null);
     const [wrongFirstNameMsg, setWrongFirstNameMsg] = useState(null);
     const [wrongLastNameMsg, setWrongLastNameMsg] = useState(null);
+    
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -67,7 +67,6 @@ function SignInContent() {
                     <label htmlFor="lastName">Last name</label><input type="text" id="lastName" name="lastName" />
                     {wrongLastNameMsg ? <p className={classes.error_msg}>{wrongLastNameMsg}</p> : null}
                 </div>
-                {errorMsg ? <p className={classes.error_msg}>{errorMsg}</p> : null}
                 <button className={classes.sign_up_button} type='submit'>Sign Up</button>
             </form>
         </section>

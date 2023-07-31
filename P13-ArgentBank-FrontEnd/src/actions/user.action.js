@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { SET_ERROR_MSG } from './errorMsg.action';
-
 export const GET_USER_PROFILE = "GET_USER_PROFILE";
 export const SIGN_OUT = "SIGN_OUT";
 export const SIGN_UP = "SIGN_UP";
@@ -28,8 +26,7 @@ export const getUserProfile = (data) => {
                 })
             }
         }).catch((error) => {
-            dispatch({ type: SET_ERROR_MSG, payload: error.response.data.message });
-            return error;
+            throw error;
         });
     };
 };
@@ -46,9 +43,9 @@ export const signUp = (data) => {
             console.log(response);
             dispatch({ type: SIGN_UP });
         }).catch((error) => {
-            console.log(error);
-            dispatch({ type: SET_ERROR_MSG, payload: error.response.data.message });
-            return error;
+            // console.log(error);
+            // dispatch({ type: SET_ERROR_MSG, payload: error.response.data.message });
+            throw error;
         })
     }
 }

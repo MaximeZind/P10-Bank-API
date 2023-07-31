@@ -1,12 +1,8 @@
 import React from 'react';
 import classes from '../styles/Error.module.css';
-import { useDispatch } from 'react-redux';
-import { deleteErrorMsg } from '../actions/errorMsg.action';
 
 function Error() {
 
-    const dispatch = useDispatch();
-    dispatch(deleteErrorMsg());
     const pageTitle = 'Erreur 404';
     document.title = `Kasa - ${pageTitle}`;
     const errorText = `Oups! La page que vous demandez n'existe pas.`;
