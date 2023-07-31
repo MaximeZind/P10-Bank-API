@@ -10,7 +10,6 @@ import { validateEmail } from '../utils/formValidation';
 function SignInContent() {
 
     const userProfile = useSelector((state) => state.userReducer);
-    // const errorMsg = useSelector((state) => state.errorMsgReducer);
     const [errorMsg, setErrorMsg] = useState(null);
     const [wrongEmailMsg, setWrongEmailMsg] = useState(null);
     const navigate = useNavigate();

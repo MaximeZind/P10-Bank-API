@@ -15,6 +15,7 @@ function SignInContent() {
     const [wrongPasswordMsg, setWrongPasswordMsg] = useState(null);
     const [wrongFirstNameMsg, setWrongFirstNameMsg] = useState(null);
     const [wrongLastNameMsg, setWrongLastNameMsg] = useState(null);
+    const [errorMsg, setErrorMsg] = useState(null);
     
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -29,9 +30,14 @@ function SignInContent() {
         const isFirstNameCorrect = validateName(formJson.firstName);
         const isLastNameCorrect = validateName(formJson.lastName);
         if (isEmailCorrect.response && isFirstNameCorrect.response && isLastNameCorrect.response && isPasswordCorrect.response) {
-            dispatch(signUp(formJson));
+            await dispatch(signUp(formJson)).catch((error) => setErrorMsg(error.response.data.message));
             setWrongEmailMsg(null);
-            form.reset();
+            setWrongFirstNameMsg(null);
+            setWrongLastNameMsg(null);
+            setWrongPasswordMsg(null);
+            if (errorMsg === null){
+                form.reset();
+            }
         } else if (!isEmailCorrect.response || !isFirstNameCorrect.response || !isLastNameCorrect.response || !isPasswordCorrect.response) {
             setWrongEmailMsg(isEmailCorrect.errorMsg);
             setWrongFirstNameMsg(isFirstNameCorrect.errorMsg);
@@ -67,6 +73,7 @@ function SignInContent() {
                     <label htmlFor="lastName">Last name</label><input type="text" id="lastName" name="lastName" />
                     {wrongLastNameMsg ? <p className={classes.error_msg}>{wrongLastNameMsg}</p> : null}
                 </div>
+                {errorMsg ? <p className={classes.error_msg}>{errorMsg}</p> : null}
                 <button className={classes.sign_up_button} type='submit'>Sign Up</button>
             </form>
         </section>
