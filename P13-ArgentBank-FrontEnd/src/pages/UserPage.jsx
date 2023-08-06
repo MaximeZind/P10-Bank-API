@@ -14,7 +14,6 @@ function UserPage() {
     }
 
     const accounts = getAccounts();
-    console.log(accounts);
     const pageTitle = `${userProfile.firstName} ${userProfile.lastName}`;
     document.title = `Argent Bank - ${pageTitle}`;
 
