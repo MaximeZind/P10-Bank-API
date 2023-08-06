@@ -1,0 +1,13 @@
+.bg_dark {
+    background-color: #12002b;
+  }
+
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    gap: 2rem
+}

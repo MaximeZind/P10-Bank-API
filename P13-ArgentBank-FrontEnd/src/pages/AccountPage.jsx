@@ -1,14 +1,14 @@
-import classes from '/src/styles/Account.module.css';
+import classes from '/src/styles/AccountPage.module.css';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { Navigate, useParams } from 'react-router-dom';
 import { getAccount } from '../utils/getAccountsDetails';
+import AccountHeader from '../components/AccountHeader';
+import Transactions from '../components/Transactions';
 
 function Account() {
 
     const id = useParams().id;
-    console.log(id);
     const account = getAccount(id);
-    console.log(account);
     const userProfile = useSelector((state) => state.userReducer);
 
     if (userProfile.id === null) {
@@ -20,9 +20,8 @@ function Account() {
 
     return (
         <main className={`${classes.main} ${classes.bg_dark}`}>
-            <header className={classes.account_header}>
-                <p>Argent Bank</p>
-            </header>
+            <AccountHeader accountType={account.accountType} accountNumber={account.accountNumber} currentBalance={account.currentBalance}/>
+            <Transactions transactions={account.transactions}/>
         </main>
     );
 }

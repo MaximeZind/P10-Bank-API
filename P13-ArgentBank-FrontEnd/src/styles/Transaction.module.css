@@ -1,0 +1,50 @@
+.transaction_section{
+    background-color: #FFFFFF;
+    border: 1px solid darkgray;
+    width: 100%;
+    text-align: left;
+}
+
+.transaction_section_header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.transaction_section_header:hover{
+    cursor: pointer;
+    background-color: rgb(241, 241, 241);
+}
+
+.date{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 0.2rem;
+}
+
+.content{
+    overflow: hidden;
+}
+
+.content_sub{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 15px;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    padding-left: 2.2rem;
+}
+
+.content_sub_icon:hover{
+    cursor: pointer
+}
+
+.form button{
+    padding: 2px;
+    border-radius: 0;
+}
