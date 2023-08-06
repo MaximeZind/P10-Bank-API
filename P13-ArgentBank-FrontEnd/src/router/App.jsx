@@ -6,7 +6,7 @@ import SignIn from '../pages/SignIn';
 import UserPage from '../pages/UserPage';
 import Error from '../pages/Error';
 import SignUp from '../pages/SignUp';
-import Account from '../pages/Account';
+import Account from '../pages/AccountPage';
 
 function App() {
 
