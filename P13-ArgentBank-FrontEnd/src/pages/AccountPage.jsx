@@ -16,7 +16,7 @@ function Account() {
     }
 
     const pageTitle = `${userProfile.firstName} ${userProfile.lastName}`;
-    document.title = `Argent Bank - ${pageTitle}`;
+    document.title = `Argent Bank - ${pageTitle} - account ${account.accountNumber}`;
 
     return (
         <main className={`${classes.main} ${classes.bg_dark}`}>

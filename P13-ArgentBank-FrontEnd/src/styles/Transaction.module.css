@@ -44,6 +44,14 @@
     cursor: pointer
 }
 
+.form{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+}
+
 .form button{
     padding: 2px;
     border-radius: 0;
