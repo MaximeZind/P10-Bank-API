@@ -18,8 +18,8 @@ function Transaction({ date, description, amount, balance, transactionType, cate
                     <p>{date}</p>
                 </div>
                 <p className={classes.description}>{description}</p>
-                <p className={classes.amount}>{amount}</p>
-                <p className={classes.balance}>{balance}</p>
+                <p className={classes.amount}>{`$${amount}`}</p>
+                <p className={classes.balance}>{`$${balance}`}</p>
             </header>
             <div className={classes.content} ref={collapseContent} style={{ maxHeight: isOpen ? `${collapseContent.current.scrollHeight}px` : `0px` }}>
                 <p className={classes.content_sub}>Transaction type: {transactionType}</p>
