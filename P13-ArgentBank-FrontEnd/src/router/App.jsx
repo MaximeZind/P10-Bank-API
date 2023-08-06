@@ -6,6 +6,7 @@ import SignIn from '../pages/SignIn';
 import UserPage from '../pages/UserPage';
 import Error from '../pages/Error';
 import SignUp from '../pages/SignUp';
+import Account from '../pages/Account';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
                     <Route path='/signin' element={<SignIn />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path='/userpage' element={<UserPage />} />
+                    <Route path='/userpage/account/:id' element={<Account />} />
                     <Route path="/404" element={<Error />} />
                     <Route path="*" element={<Navigate to={'/404'} />} />
                 </ Route>
