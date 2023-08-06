@@ -5,7 +5,7 @@ import classes from '/src/styles/Home.module.css';
 
 function Home() {
 
-    const pageTitle = `Accueil`;
+    const pageTitle = `Home`;
     document.title = `Argent Bank - ${pageTitle}`;
 
     return (
