@@ -1,4 +1,4 @@
-import accounts from '../mockedData/transactions.json';
+import accounts from '../mockedData/accountDetails.json';
 
 export function getAccounts(){
     return accounts;
