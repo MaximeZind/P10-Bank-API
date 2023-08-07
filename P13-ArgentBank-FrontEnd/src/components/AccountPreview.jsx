@@ -7,7 +7,7 @@ function AccountPreview({ accountType, accountNumber, currentBalance, }) {
         <section className={classes.account}>
             <div className={classes.account_content_wrapper}>
                 <h3 className={classes.account_title}>{`Argent Bank ${accountType} (${accountNumber})`}</h3>
-                <p className={classes.account_amount}>{`${currentBalance}`}</p>
+                <p className={classes.account_amount}>{`$${currentBalance}`}</p>
                 <p className={classes.account_amount_description}>Available Balance</p>
             </div>
             <div className={`${classes.account_content_wrapper} ${classes.cta}`}>
