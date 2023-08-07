@@ -10,6 +10,16 @@ function Transaction({ date, description, amount, balance, transactionType, cate
     const [noteForm, setNoteForm] = useState(false);
     const collapseContent = useRef(null);
 
+    const handleNoteChange = async (event) => {
+        event.preventDefault();
+        //modifie les notes
+    };
+
+    const handleCategoryChange = async (event) => {
+        event.preventDefault();
+        //modifie la catégorie
+    };
+
     return (
         <section className={classes.transaction_section}>
             <header className={classes.transaction_section_header} onClick={() => setIsOpen(!isOpen)}>
@@ -27,11 +37,11 @@ function Transaction({ date, description, amount, balance, transactionType, cate
                 {categoryForm ?
                     <div className={classes.content_sub}>
                         <p>Category:</p>
-                        <form className={classes.form}>
+                        <form onSubmit={handleCategoryChange} className={classes.form}>
                             <input className={classes.category_change_input} type="text" id="category" name="category" placeholder={category} />
                             <button>Save</button>
-                            <button onClick={() => setCategoryForm(false)}>Cancel</button>
                         </form>
+                        <button onClick={() => setCategoryForm(false)}>Cancel</button>
                     </div> :
                     <div className={classes.content_sub}>
                         <p>Category: {category}</p>
@@ -41,11 +51,11 @@ function Transaction({ date, description, amount, balance, transactionType, cate
                 {noteForm ?
                     <div className={classes.content_sub}>
                         <p>Notes:</p>
-                        <form className={classes.form}>
+                        <form onSubmit={handleNoteChange} className={classes.form}>
                             <input className={classes.notes_change_input} type="text" id="notes" name="notes" placeholder="" />
                             <button>Save</button>
-                            <button onClick={() => setNoteForm(false)} >Cancel</button>
                         </form>
+                        <button onClick={() => setNoteForm(false)} >Cancel</button>
                     </div> :
                     <div className={classes.content_sub}>
                         <p>Notes: {notes}</p>
