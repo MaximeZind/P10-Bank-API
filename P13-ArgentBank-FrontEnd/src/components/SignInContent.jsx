@@ -25,16 +25,24 @@ function SignInContent() {
         if (isEmailCorrect.response) {
             await dispatch(getUserProfile(formJson)).catch((error) => setErrorMsg(error.response.data.message));
             setWrongEmailMsg(null);
-        } else if (!isEmailCorrect.response){
+            handleRememberMe(formJson.rememberme);
+        } else if (!isEmailCorrect.response) {
             setWrongEmailMsg(isEmailCorrect.errorMsg);
         }
     }
 
+    function handleRememberMe(rememberme) {
+        if (rememberme) {
+            console.log(`Rememberme: ${rememberme}`);
+        }
+    }
+
+    //Si le profil utilisateur existe, renvoie vers la page de profil
     useEffect(() => {
         if (userProfile.id !== null) {
             navigate('/userpage');
         }
-    }, [userProfile, navigate]);
+    }, [userProfile]);
 
     return (
         <section className={classes.sign_in_content}>
@@ -43,21 +51,21 @@ function SignInContent() {
             <form onSubmit={handleSubmit}>
                 <div className={classes.input_wrapper}>
                     <label htmlFor="email">Email</label><input type="text" id="email" name="email" />
-                    {wrongEmailMsg? <p className={classes.error_msg}>{wrongEmailMsg}</p> : null}
+                    {wrongEmailMsg ? <p className={classes.error_msg}>{wrongEmailMsg}</p> : null}
                 </div>
                 <div className={classes.input_wrapper}>
                     <label htmlFor="password">Password</label><input type="password" id="password" name="password" />
                 </div>
                 {errorMsg ? <p className={classes.error_msg}>{errorMsg}</p> : null}
                 <div className={classes.input_remember}>
-                    <input type="checkbox" id="remember-me" /><label htmlFor="remember-me">Remember me</label>
+                    <input type="checkbox" id="rememberme" name="rememberme" /><label htmlFor="rememberme">Remember me</label>
                 </div>
                 <button className={classes.sign_in_button} type='submit'>Sign In</button>
             </form>
-                <div className={classes.signup}>
+            <div className={classes.signup}>
                 <p>Don’t have an account? </p>
                 <Link to={"/signup"}>Sign up</Link>
-                </div>
+            </div>
         </section>
     );
 }

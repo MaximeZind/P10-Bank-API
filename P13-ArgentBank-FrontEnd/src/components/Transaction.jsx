@@ -14,11 +14,13 @@ function Transaction({ date, description, amount, balance, transactionType, cate
     const handleNoteChange = async (event) => {
         event.preventDefault();
         //modifie les notes
+        setNoteForm(false);
     };
 
     const handleCategoryChange = async (event) => {
         event.preventDefault();
         //modifie la catégorie
+        setCategoryForm(false);
     };
 
     return (
