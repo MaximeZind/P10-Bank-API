@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 function Transactions({ transactions }) {
 
-    console.log(transactions)
     return (
         <section className={classes.transactions_section}>
             {transactions.map((transaction) => {
