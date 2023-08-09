@@ -1,8 +1,10 @@
 import classes from '/src/styles/Transactions.module.css';
 import Transaction from './Transaction';
+import PropTypes from 'prop-types';
 
 function Transactions({ transactions }) {
 
+    console.log(transactions)
     return (
         <section className={classes.transactions_section}>
             {transactions.map((transaction) => {
@@ -10,6 +12,20 @@ function Transactions({ transactions }) {
             })}
         </section>
     );
+}
+
+Transactions.propTypes = {
+    transactions: PropTypes.arrayOf(
+        PropTypes.shape({
+            date: PropTypes.string.isRequired,
+            description: PropTypes.string.isRequired,
+            amount: PropTypes.number.isRequired,
+            balance: PropTypes.number.isRequired,
+            transactionType: PropTypes.string.isRequired,
+            category: PropTypes.string,
+            notes: PropTypes.string,
+        })
+    ).isRequired,
 }
 
 export default Transactions;

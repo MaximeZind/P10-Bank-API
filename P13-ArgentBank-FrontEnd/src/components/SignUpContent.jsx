@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { validateEmail, validateName, validatePassword } from '../utils/formValidation';
 
-function SignInContent() {
+function SignUpContent() {
 
     const userProfile = useSelector((state) => state.userReducer);
 
@@ -80,4 +80,4 @@ function SignInContent() {
     );
 }
 
-export default SignInContent;
+export default SignUpContent;

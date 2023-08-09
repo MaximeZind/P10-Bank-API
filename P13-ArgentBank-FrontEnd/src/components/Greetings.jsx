@@ -2,6 +2,7 @@ import classes from '/src/styles/Greetings.module.css';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../actions/user.action';
+import PropTypes from 'prop-types';
 
 function Greetings({ firstName, lastName }) {
 
@@ -31,12 +32,17 @@ function Greetings({ firstName, lastName }) {
                         </div>
                         <div className={classes.buttons_wrapper}>
                             <button className={classes.edit_button} type='submit'>Save</button>
-                            <button className={classes.edit_button} onClick={() => setOpenClose(!isOpen)} >Cancel</button>
+                            <button className={classes.edit_button} type='button' onClick={() => setOpenClose(!isOpen)} >Cancel</button>
                         </div>
                     </form>
             }
         </div>
     );
+}
+
+Greetings.propTypes = {
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
 }
 
 export default Greetings;

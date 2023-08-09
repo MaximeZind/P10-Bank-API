@@ -2,6 +2,7 @@ import classes from '/src/styles/Transaction.module.css';
 import { faChevronDown, faPencil } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 
 function Transaction({ date, description, amount, balance, transactionType, category, notes }) {
 
@@ -65,6 +66,16 @@ function Transaction({ date, description, amount, balance, transactionType, cate
             </div>
         </section>
     );
+}
+
+Transaction.propTypes = {
+    date: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    amount: PropTypes.number.isRequired,
+    balance: PropTypes.number.isRequired,
+    transactionType: PropTypes.string.isRequired,
+    category: PropTypes.string,
+    notes: PropTypes.string,
 }
 
 export default Transaction;

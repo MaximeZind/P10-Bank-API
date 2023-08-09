@@ -1,6 +1,7 @@
 import classes from '../styles/FeatureItem.module.css';
+import PropTypes from 'prop-types';
 
-function Featureitem({img, altText, featureTitle, featureText}) {
+function FeatureItem({img, altText, featureTitle, featureText}) {
 
     return (
         <div className={classes.feature_item}>
@@ -13,4 +14,11 @@ function Featureitem({img, altText, featureTitle, featureText}) {
     );
 }
 
-export default Featureitem;
+FeatureItem.propTypes = {
+    img: PropTypes.string.isRequired,
+    altText: PropTypes.string.isRequired,
+    featureTitle: PropTypes.string.isRequired,
+    featureText: PropTypes.string.isRequired,
+}
+
+export default FeatureItem;

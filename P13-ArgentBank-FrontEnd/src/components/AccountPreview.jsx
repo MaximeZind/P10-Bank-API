@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import classes from '/src/styles/AccountPreview.module.css';
+import PropTypes from 'prop-types';
 
 function AccountPreview({ accountType, accountNumber, currentBalance, }) {
 
@@ -17,6 +18,12 @@ function AccountPreview({ accountType, accountNumber, currentBalance, }) {
             </div>
         </section>
     );
+}
+
+AccountPreview.propTypes = {
+    accountType: PropTypes.string.isRequired,
+    accountNumber: PropTypes.string.isRequired,
+    currentBalance: PropTypes.number.isRequired,
 }
 
 export default AccountPreview;
