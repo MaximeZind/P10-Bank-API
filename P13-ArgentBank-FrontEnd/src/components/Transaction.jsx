@@ -10,6 +10,7 @@ function Transaction({ date, description, amount, balance, transactionType, cate
     const [categoryForm, setCategoryForm] = useState(false);
     const [noteForm, setNoteForm] = useState(false);
     const collapseContent = useRef(null);
+    const categoryList = ['Food', 'Groceries', 'Utilities', 'Rent', 'Entertainment', 'Healthcare'];
 
     const handleNoteChange = async (event) => {
         event.preventDefault();
@@ -41,7 +42,12 @@ function Transaction({ date, description, amount, balance, transactionType, cate
                     <div className={classes.content_sub}>
                         <p>Category:</p>
                         <form onSubmit={handleCategoryChange} className={classes.form}>
-                            <input className={classes.category_change_input} type="text" id="category" name="category" placeholder={category} />
+                            <select className={classes.category_change_input} id="category" name="category" placeholder={category}>
+                                {categoryList.map((category) => {
+                                return <option value={category} key={category}>{category}</option>
+                                })
+                                }
+                            </select>
                             <button>Save</button>
                         </form>
                         <button onClick={() => setCategoryForm(false)}>Cancel</button>
