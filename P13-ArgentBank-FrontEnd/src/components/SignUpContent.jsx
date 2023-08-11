@@ -11,12 +11,13 @@ function SignUpContent() {
 
     const userProfile = useSelector((state) => state.userReducer);
 
+    const [isAccountCreated, setIsAccountCreated] = useState(false);
     const [wrongEmailMsg, setWrongEmailMsg] = useState(null);
     const [wrongPasswordMsg, setWrongPasswordMsg] = useState(null);
     const [wrongFirstNameMsg, setWrongFirstNameMsg] = useState(null);
     const [wrongLastNameMsg, setWrongLastNameMsg] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
-    
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -35,7 +36,8 @@ function SignUpContent() {
             setWrongFirstNameMsg(null);
             setWrongLastNameMsg(null);
             setWrongPasswordMsg(null);
-            if (errorMsg === null){
+            setIsAccountCreated(true);
+            if (errorMsg === null) {
                 form.reset();
             }
         } else if (!isEmailCorrect.response || !isFirstNameCorrect.response || !isLastNameCorrect.response || !isPasswordCorrect.response) {
@@ -53,30 +55,36 @@ function SignUpContent() {
     }, [userProfile, navigate]);
 
     return (
-        <section className={classes.sign_in_content}>
-            <FontAwesomeIcon icon={faUserCircle} />
-            <h1>Sign Up</h1>
-            <form onSubmit={handleSubmit}>
-                <div className={classes.input_wrapper}>
-                    <label htmlFor="email">Email</label><input type="text" id="email" name="email" />
-                    {wrongEmailMsg ? <p className={classes.error_msg}>{wrongEmailMsg}</p> : null}
-                </div>
-                <div className={classes.input_wrapper}>
-                    <label htmlFor="password">Password</label><input type="password" id="password" name="password" />
-                    {wrongPasswordMsg ? <p className={classes.error_msg}>{wrongPasswordMsg}</p> : null}
-                </div>
-                <div className={classes.input_wrapper}>
-                    <label htmlFor="firstName">First name</label><input type="text" id="firstName" name="firstName" />
-                    {wrongFirstNameMsg ? <p className={classes.error_msg}>{wrongFirstNameMsg}</p> : null}
-                </div>
-                <div className={classes.input_wrapper}>
-                    <label htmlFor="lastName">Last name</label><input type="text" id="lastName" name="lastName" />
-                    {wrongLastNameMsg ? <p className={classes.error_msg}>{wrongLastNameMsg}</p> : null}
-                </div>
-                {errorMsg ? <p className={classes.error_msg}>{errorMsg}</p> : null}
-                <button className={classes.sign_up_button} type='submit'>Sign Up</button>
-            </form>
-        </section>
+        !isAccountCreated ?
+            <section className={classes.sign_in_content}>
+                <FontAwesomeIcon icon={faUserCircle} />
+                <h1>Sign Up</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className={classes.input_wrapper}>
+                        <label htmlFor="email">Email</label><input type="text" id="email" name="email" />
+                        {wrongEmailMsg ? <p className={classes.error_msg}>{wrongEmailMsg}</p> : null}
+                    </div>
+                    <div className={classes.input_wrapper}>
+                        <label htmlFor="password">Password</label><input type="password" id="password" name="password" />
+                        {wrongPasswordMsg ? <p className={classes.error_msg}>{wrongPasswordMsg}</p> : null}
+                    </div>
+                    <div className={classes.input_wrapper}>
+                        <label htmlFor="firstName">First name</label><input type="text" id="firstName" name="firstName" />
+                        {wrongFirstNameMsg ? <p className={classes.error_msg}>{wrongFirstNameMsg}</p> : null}
+                    </div>
+                    <div className={classes.input_wrapper}>
+                        <label htmlFor="lastName">Last name</label><input type="text" id="lastName" name="lastName" />
+                        {wrongLastNameMsg ? <p className={classes.error_msg}>{wrongLastNameMsg}</p> : null}
+                    </div>
+                    {errorMsg ? <p className={classes.error_msg}>{errorMsg}</p> : null}
+                    <button className={classes.sign_up_button} type='submit'>Sign Up</button>
+                </form>
+            </section> : <section className={classes.sign_in_content}>
+                <FontAwesomeIcon icon={faUserCircle} />
+                <h1>Sign Up</h1>
+                <p>User successfully created!</p>
+                <button className={classes.sign_up_button} onClick={() => navigate('/signin')}>Go to the sign in</button>
+            </section>
     );
 }
 
