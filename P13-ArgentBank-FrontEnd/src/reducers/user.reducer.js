@@ -4,7 +4,6 @@ const initialState = {
     lastName: null,
     firstName: null,
     id: null,
-    token: null,
 };
 
 export default function userReducer(state = initialState, action) {

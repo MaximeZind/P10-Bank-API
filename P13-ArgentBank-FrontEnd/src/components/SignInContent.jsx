@@ -2,14 +2,16 @@ import classes from '/src/styles/SignInContent.module.css';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserProfile } from '../actions/user.action';
+// import { getUserProfile } from '../actions/user.action';
+import { getToken } from '../actions/token.action';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { validateEmail } from '../utils/formValidation';
+import { GET_TOKEN } from '../actions/token.action';
 
 function SignInContent() {
 
-    const userProfile = useSelector((state) => state.userReducer);
+    const userToken = useSelector((state) => state.tokenReducer);
     const [errorMsg, setErrorMsg] = useState(null);
     const [wrongEmailMsg, setWrongEmailMsg] = useState(null);
     const navigate = useNavigate();
@@ -23,7 +25,7 @@ function SignInContent() {
         const formJson = Object.fromEntries(formData.entries());
         const isEmailCorrect = validateEmail(formJson.email);
         if (isEmailCorrect.response) {
-            await dispatch(getUserProfile(formJson)).catch((error) => setErrorMsg(error.response.data.message));
+            await dispatch(getToken(formJson)).catch((error) => setErrorMsg(error.response.data.message));
             setWrongEmailMsg(null);
             handleRememberMe(formJson.rememberme);
         } else if (!isEmailCorrect.response) {
@@ -39,10 +41,17 @@ function SignInContent() {
 
     //Si le profil utilisateur existe, renvoie vers la page de profil
     useEffect(() => {
-        if (userProfile.id !== null) {
+        const token = localStorage.getItem('token');
+        if (userToken){
             navigate('/userpage');
+        } else if (!userToken && token){
+            const getToken = async () =>{
+                await dispatch({type: GET_TOKEN, payload: token})
+                navigate('/userpage');
+            }
+            getToken();
         }
-    }, [userProfile]);
+    });
 
     return (
         <section className={classes.sign_in_content}>
