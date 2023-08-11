@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { deleteToken } from './token.action';
 export const GET_USER_PROFILE = "GET_USER_PROFILE";
 export const SIGN_OUT = "SIGN_OUT";
 export const SIGN_UP = "SIGN_UP";
@@ -25,7 +24,6 @@ export const getUserProfile = (token) => {
 };
 
 export const signOut = () => {
-    deleteToken();
     return (dispatch) => {
         dispatch({ type: SIGN_OUT });
     }

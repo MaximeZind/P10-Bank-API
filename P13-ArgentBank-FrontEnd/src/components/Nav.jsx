@@ -5,6 +5,7 @@ import { faUserCircle, faArrowRightFromBracket } from '@fortawesome/free-solid-s
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
 import { signOut } from '../actions/user.action';
+import { deleteToken } from '../actions/token.action';
 
 function Nav() {
 
@@ -16,6 +17,7 @@ function Nav() {
         event.preventDefault();
         navigate('/');
         dispatch(signOut());
+        dispatch(deleteToken());
     }
 
     return (
