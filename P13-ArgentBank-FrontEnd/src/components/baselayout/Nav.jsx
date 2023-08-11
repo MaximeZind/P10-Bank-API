@@ -1,11 +1,11 @@
-import classes from '../styles/Nav.module.css';
+import classes from '../../styles/Nav.module.css';
 import { NavLink, useNavigate } from 'react-router-dom';
 import logo from '/src/assets/argentBankLogo.png';
 import { faUserCircle, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
-import { signOut } from '../actions/user.action';
-import { deleteToken } from '../actions/token.action';
+import { signOut } from '../../actions/user.action';
+import { deleteToken } from '../../actions/token.action';
 
 function Nav() {
 

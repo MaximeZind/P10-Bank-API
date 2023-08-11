@@ -1,6 +1,6 @@
 import React from "react";
-import Nav from "../components/Nav";
-import Footer from "../components/Footer";
+import Nav from "../components/baselayout/Nav";
+import Footer from "../components//baselayout/Footer";
 import { Outlet } from "react-router-dom";
 
 function BaseLayout() {
