@@ -6,10 +6,12 @@ import { signUp } from '../actions/user.action';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { validateEmail, validateName, validatePassword } from '../utils/formValidation';
+import { GET_TOKEN } from '../actions/token.action';
 
 function SignUpContent() {
 
     const userProfile = useSelector((state) => state.userReducer);
+    const userToken = useSelector((state) => state.tokenReducer);
 
     const [isAccountCreated, setIsAccountCreated] = useState(false);
     const [wrongEmailMsg, setWrongEmailMsg] = useState(null);
@@ -52,7 +54,28 @@ function SignUpContent() {
         if (userProfile.id !== null) {
             navigate('/userpage');
         }
-    }, [userProfile, navigate]);
+    }, [userProfile]);
+
+    //Si le profil utilisateur existe, renvoie vers la page de profil
+    useEffect(() => {
+        const localStorageToken = localStorage.getItem('token');
+        const sessionStorageToken = sessionStorage.getItem('token');
+        if (userToken) {
+            navigate('/userpage');
+        } else if (!userToken && localStorageToken) {
+            const getToken = async () => {
+                await dispatch({ type: GET_TOKEN, payload: localStorageToken })
+                navigate('/userpage');
+            }
+            getToken();
+        } else if (!userToken && sessionStorageToken) {
+            const getToken = async () => {
+                await dispatch({ type: GET_TOKEN, payload: sessionStorageToken })
+                navigate('/userpage');
+            }
+            getToken();
+        }
+    });
 
     return (
         !isAccountCreated ?
