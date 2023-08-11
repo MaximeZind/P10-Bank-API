@@ -2,7 +2,6 @@ import classes from '/src/styles/SignInContent.module.css';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useDispatch, useSelector } from 'react-redux';
-// import { getUserProfile } from '../actions/user.action';
 import { getToken } from '../actions/token.action';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -27,26 +26,26 @@ function SignInContent() {
         if (isEmailCorrect.response) {
             await dispatch(getToken(formJson)).catch((error) => setErrorMsg(error.response.data.message));
             setWrongEmailMsg(null);
-            handleRememberMe(formJson.rememberme);
         } else if (!isEmailCorrect.response) {
             setWrongEmailMsg(isEmailCorrect.errorMsg);
         }
     }
 
-    function handleRememberMe(rememberme) {
-        if (rememberme) {
-            console.log(`Rememberme: ${rememberme}`);
-        }
-    }
-
     //Si le profil utilisateur existe, renvoie vers la page de profil
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        const localStorageToken = localStorage.getItem('token');
+        const sessionStorageToken = sessionStorage.getItem('token');
         if (userToken){
             navigate('/userpage');
-        } else if (!userToken && token){
+        } else if (!userToken && localStorageToken){
             const getToken = async () =>{
-                await dispatch({type: GET_TOKEN, payload: token})
+                await dispatch({type: GET_TOKEN, payload: localStorageToken})
+                navigate('/userpage');
+            }
+            getToken();
+        }   else if (!userToken && sessionStorageToken){
+            const getToken = async () =>{
+                await dispatch({type: GET_TOKEN, payload: sessionStorageToken})
                 navigate('/userpage');
             }
             getToken();
