@@ -9,10 +9,10 @@ export function validateName(string) {
     if ((regex.test(nameValue)) && (!nameValue.includes(",,")) && (!nameValue.includes("..")) && (!nameValue.includes("''")) && (!nameValue.includes("--")) && (!nameValue.trim().includes("  "))) {
       response = true;
     } else if ((regex.test(nameValue) === false) || (nameValue.includes(",,")) || (nameValue.includes("..")) || (nameValue.includes("''")) || (nameValue.includes("--")) || nameValue.trim().includes("  ")) {
-      errorMsg = "Le nom est invalide."
+      errorMsg = "This name is invalid."
     }
   } else if (nameValue.length < 2) {
-    errorMsg = "Le nom doit faire au moins 2 charactères."
+    errorMsg = "The name must be at least 2 characters long."
   }
 
   let validation = {
@@ -33,7 +33,7 @@ export function validateEmail(string) {
   if (emailValue.match(regex) && !emailValue.includes(" ")) {
     response = true;
   } else if (!emailValue.match(regex) || emailValue.includes(" ")) {
-    errorMsg = "L'adresse email est invalide.";
+    errorMsg = "This email address is invalid.";
   }
   let validation = {
     response: response,
@@ -50,7 +50,7 @@ export function validatePassword(string) {
   if (password.length >= 8) {
     response = true;
   } else if (password.length < 8) {
-    errorMsg = "Le mot de passe doit être composé d'au moins 8 charactères";
+    errorMsg = "The password must be at least 8 characters long.";
   }
   let validation = {
     response: response,
