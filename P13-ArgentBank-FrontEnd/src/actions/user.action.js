@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { deleteToken } from './token.action';
 export const GET_USER_PROFILE = "GET_USER_PROFILE";
 export const SIGN_OUT = "SIGN_OUT";
 export const SIGN_UP = "SIGN_UP";
@@ -19,6 +20,13 @@ export const getUserProfile = (token) => {
                 id: userDetails.id,
             };
             dispatch({ type: GET_USER_PROFILE, payload: userProfile });
+        }).catch((error) => {
+            if (error.response.data.status === 401){
+                localStorage.removeItem('token');
+                sessionStorage.removeItem('token');
+                dispatch(deleteToken());
+            }
+            throw error;
         })
     };
 };
