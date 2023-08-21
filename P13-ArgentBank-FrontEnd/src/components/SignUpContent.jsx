@@ -41,7 +41,7 @@ function SignUpContent() {
             await dispatch(signUp(formJson)).catch((error) => {setErrorMsg(error.response.data.message);
                 responseStatus = error.response.data.status;
             });
-                if (responseStatus === 200) {
+                if (responseStatus !== 400) {
                     setIsAccountCreated(true);
                     form.reset();
                 } 
