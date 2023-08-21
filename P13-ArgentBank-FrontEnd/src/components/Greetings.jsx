@@ -9,13 +9,14 @@ function Greetings({ firstName, lastName }) {
     const dispatch = useDispatch();
     const [isOpen, setOpenClose] = useState(false);
     const userProfile = useSelector((state) => state.userReducer);
+    const token = useSelector((state) => state.tokenReducer);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const form = event.target;
         const formData = new FormData(form);
         const formJson = Object.fromEntries(formData.entries());
-        dispatch(updateUser(formJson, userProfile.token));
+        dispatch(updateUser(formJson, token));
         setOpenClose(!isOpen);
     };
 
