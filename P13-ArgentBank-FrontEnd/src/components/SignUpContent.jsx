@@ -33,15 +33,18 @@ function SignUpContent() {
         const isFirstNameCorrect = validateName(formJson.firstName);
         const isLastNameCorrect = validateName(formJson.lastName);
         if (isEmailCorrect.response && isFirstNameCorrect.response && isLastNameCorrect.response && isPasswordCorrect.response) {
-            await dispatch(signUp(formJson)).catch((error) => setErrorMsg(error.response.data.message));
             setWrongEmailMsg(null);
             setWrongFirstNameMsg(null);
             setWrongLastNameMsg(null);
             setWrongPasswordMsg(null);
-            setIsAccountCreated(true);
-            if (errorMsg === null) {
-                form.reset();
-            }
+            let responseStatus = '';
+            await dispatch(signUp(formJson)).catch((error) => {setErrorMsg(error.response.data.message);
+                responseStatus = error.response.data.status;
+            });
+                if (responseStatus === 200) {
+                    setIsAccountCreated(true);
+                    form.reset();
+                } 
         } else if (!isEmailCorrect.response || !isFirstNameCorrect.response || !isLastNameCorrect.response || !isPasswordCorrect.response) {
             setWrongEmailMsg(isEmailCorrect.errorMsg);
             setWrongFirstNameMsg(isFirstNameCorrect.errorMsg);

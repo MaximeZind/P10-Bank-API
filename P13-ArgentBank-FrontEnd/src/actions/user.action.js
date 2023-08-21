@@ -39,7 +39,7 @@ export const signOut = () => {
 
 export const signUp = (data) => {
     return (dispatch) => {
-        return axios.post('http://localhost:3001/api/v1/user/signup', data).then(res => {
+        return axios.post('http://localhost:3001/api/v1/user/signup', data).then(() => {
             dispatch({ type: SIGN_UP });
         }).catch((error) => {
             throw error;
