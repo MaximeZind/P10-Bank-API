@@ -28,7 +28,7 @@ function UserPage() {
             } else if (!userToken && localStorageToken) {
                 await dispatch({ type: GET_TOKEN, payload: localStorageToken });
                 await dispatch(getUserProfile(localStorageToken));
-            } else if (userToken && !localStorageToken && sessionStorageToken){
+            } else if (!userToken && !localStorageToken && sessionStorageToken){
                 await dispatch({ type: GET_TOKEN, payload: sessionStorageToken });
                 await dispatch(getUserProfile(sessionStorageToken));
             }
