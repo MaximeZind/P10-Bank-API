@@ -2,8 +2,8 @@ import classes from '/src/styles/AccountPage.module.css';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 import { Navigate, useParams } from 'react-router-dom';
 import { getAccount } from '../utils/getAccountsDetails';
-import AccountHeader from '../components/AccountHeader';
-import Transactions from '../components/Transactions';
+import AccountHeader from '../components/account/AccountHeader';
+import Transactions from '../components/account/Transactions';
 
 function Account() {
 
