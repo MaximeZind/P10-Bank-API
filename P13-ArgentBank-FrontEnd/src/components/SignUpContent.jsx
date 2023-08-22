@@ -53,12 +53,6 @@ function SignUpContent() {
         }
     }
 
-    useEffect(() => {
-        if (userProfile.id !== null) {
-            navigate('/userpage');
-        }
-    }, [userProfile]);
-
     //Si le profil utilisateur existe, renvoie vers la page de profil
     useEffect(() => {
         const localStorageToken = localStorage.getItem('token');
