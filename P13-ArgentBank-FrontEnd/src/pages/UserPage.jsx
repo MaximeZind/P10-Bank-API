@@ -14,9 +14,10 @@ function UserPage() {
     const userToken = useSelector((state) => state.tokenReducer);
     const userProfile = useSelector((state) => state.userReducer);
     const dispatch = useDispatch();
-    const token = localStorage.getItem('token');
+    const localStorageToken = localStorage.getItem('token');
+    const sessionStorageToken = sessionStorage.getItem('token');
 
-    if (userToken === null && token === null) {
+    if (userToken === null && localStorageToken === null && sessionStorageToken === null) {
         return <Navigate to={'/'} />;
     }
 
@@ -24,13 +25,16 @@ function UserPage() {
         const getProfile = async () => {
             if (userToken) {
                 await dispatch(getUserProfile(userToken));
-            } else if (!userToken && token) {
-                await dispatch({ type: GET_TOKEN, payload: token });
-                await dispatch(getUserProfile(token));
+            } else if (!userToken && localStorageToken) {
+                await dispatch({ type: GET_TOKEN, payload: localStorageToken });
+                await dispatch(getUserProfile(localStorageToken));
+            } else if (userToken && !localStorageToken && sessionStorageToken){
+                await dispatch({ type: GET_TOKEN, payload: sessionStorageToken });
+                await dispatch(getUserProfile(sessionStorageToken));
             }
         }
         getProfile();
-    }, [userToken, token]);
+    }, [userToken, localStorageToken, sessionStorageToken]);
 
     const accounts = getAccounts();
     const pageTitle = `${userProfile.firstName} ${userProfile.lastName}`;
