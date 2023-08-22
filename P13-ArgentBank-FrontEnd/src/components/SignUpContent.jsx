@@ -10,7 +10,6 @@ import { GET_TOKEN } from '../actions/token.action';
 
 function SignUpContent() {
 
-    const userProfile = useSelector((state) => state.userReducer);
     const userToken = useSelector((state) => state.tokenReducer);
 
     const [isAccountCreated, setIsAccountCreated] = useState(false);
