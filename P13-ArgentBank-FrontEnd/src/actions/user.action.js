@@ -62,6 +62,8 @@ export const updateUser = (data, token) => {
                 id: userDetails.id,
             };
             dispatch({ type: UPDATE_USER, payload: userProfile });
+        }).catch((error) => {
+            throw error;
         });
     };
 };
