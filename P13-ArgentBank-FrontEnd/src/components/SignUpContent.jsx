@@ -52,7 +52,7 @@ function SignUpContent() {
         }
     }
 
-    //Si le profil utilisateur existe, renvoie vers la page de profil
+    //Si le token existe, renvoie vers la page de profil
     useEffect(() => {
         const localStorageToken = localStorage.getItem('token');
         const sessionStorageToken = sessionStorage.getItem('token');
