@@ -5,8 +5,9 @@ function Error() {
 
     const pageTitle = 'Erreur 404';
     document.title = `Kasa - ${pageTitle}`;
-    const errorText = `Oups! La page que vous demandez n'existe pas.`;
-    const linkText = `Retourner sur la page d'accueil`;
+    const errorText = `The page you are requesting does not exist.`;
+    const linkText = `Return to the homepage`;
+    
 
     return (
         <div className={classes.error404}>

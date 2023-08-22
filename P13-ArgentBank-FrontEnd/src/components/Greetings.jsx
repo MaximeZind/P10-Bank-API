@@ -28,8 +28,8 @@ function Greetings({ firstName, lastName }) {
                     <button onClick={() => setOpenClose(!isOpen)} className={classes.edit_button} >Edit Name</button> :
                     <form className={classes.name_change_form} onSubmit={handleSubmit}>
                         <div className={classes.inputs_wrapper}>
-                            <input className={classes.name_change_input} type="text" id="firstName" name="firstName" placeholder={userProfile.firstName} />
-                            <input className={classes.name_change_input} type="text" id="lastName" name="lastName" placeholder={userProfile.lastName} />
+                            <input className={classes.name_change_input} type="text" id="firstName" name="firstName" defaultValue={userProfile.firstName} />
+                            <input className={classes.name_change_input} type="text" id="lastName" name="lastName" defaultValue={userProfile.lastName} />
                         </div>
                         <div className={classes.buttons_wrapper}>
                             <button className={classes.edit_button} type='submit'>Save</button>
